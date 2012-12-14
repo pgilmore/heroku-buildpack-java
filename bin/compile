@@ -63,10 +63,8 @@ cd $CACHE_DIR
 FILE_NAME="buildpack-phantomjs-1.7.0.tar.gz"
 PHANTOMJS_URL="https://s3.amazonaws.com/youcruit/heroku/${FILE_NAME}"
 
-if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
-  echo "-----> Fetching PhantomJS 1.7.0 buildpack binaries"
-  curl --silent --max-time 60 --location $PHANTOMJS_URL -o $CACHE_DIR/$FILE_NAME
-fi
+echo "-----> Fetching PhantomJS 1.7.0 buildpack binaries"
+curl --silent --max-time 60 --location $PHANTOMJS_URL -o $CACHE_DIR/$FILE_NAME
 
 echo "-----> Extracting PhantomJS 1.7.0 binaries" 
 mkdir -p $BUILD_DIR/vendor/phantomjs
