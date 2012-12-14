@@ -6,9 +6,8 @@ BUILD_DIR=$1
 cat <<EOF
 ---
 config_vars:
-  PATH: /app/.jdk/bin:/usr/local/bin:/usr/bin:/bin
-  JAVA_OPTS: -Xmx384m -Xss512k -XX:+UseCompressedOops
-  MAVEN_OPTS: -Xmx384m -Xss512k -XX:+UseCompressedOops 
-addons:
-  heroku-postgresql:dev
+  PATH: "/app/.jdk/bin:/usr/local/bin:/usr/bin:/bin:/app/vendor/phantomjs/bin"
+  LD_LIBRARY_PATH: "/usr/local/lib:/usr/lib:/lib:/app/vendor/phantomjs/lib"
+  JAVA_OPTS: -Xmx340m -Xss512k -XX:+UseCompressedOops
+  MAVEN_OPTS: -Xmx340m -Xss512k -XX:+UseCompressedOops 
 EOF

@@ -56,8 +56,21 @@ if [ -f ${BUILD_DIR}/system.properties ]; then
   cp ${BUILD_DIR}/system.properties ${CACHE_DIR}/
 fi
 
-# change to cache dir to install maven
+# change to cache dir to install maven and phantomjs
 cd $CACHE_DIR
+
+# install phantomjs with fonts
+FILE_NAME="buildpack-phantomjs-1.7.0.tar.gz"
+PHANTOMJS_URL="https://s3.amazonaws.com/youcruit/heroku/${FILE_NAME}"
+
+if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
+  echo "-----> Fetching PhantomJS 1.7.0 buildpack binaries"
+  curl --silent --max-time 60 --location $PHANTOMJS_URL -o $CACHE_DIR/$FILE_NAME
+fi
+
+echo "-----> Extracting PhantomJS 1.7.0 binaries" 
+mkdir -p $BUILD_DIR/vendor/phantomjs
+tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/phantomjs
 
 # install maven with base repository
 MAVEN_URL="http://s3.amazonaws.com/heroku-jvm-langpack-java/maven.tar.gz"
