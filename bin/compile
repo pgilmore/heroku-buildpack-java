@@ -19,7 +19,7 @@ KEEP_M2_CACHE="true"
 
 # create default system.properties for apps that had the jdk vendored in 
 if [ -f ${CACHE_DIR}/.jdk/vendor ] && [ ! -f ${BUILD_DIR}/system.properties ]; then
-  echo "java.runtime.version=1.6" > ${BUILD_DIR}/system.properties
+  echo "java.runtime.version=1.7" > ${BUILD_DIR}/system.properties
 fi
 
 if [ -f ${CACHE_DIR}/system.properties ] && [ ! -f ${BUILD_DIR}/system.properties ]; then
@@ -31,7 +31,7 @@ if [ ! -d $CACHE_DIR ]; then
   logger -p user.notice -t "slugc[$$]" "language_pack_java new_java_app"
   KEEP_M2_CACHE="false"
   if [ ! -f ${BUILD_DIR}/system.properties ]; then 
-    echo "java.runtime.version=1.6" > ${BUILD_DIR}/system.properties; 
+    echo "java.runtime.version=1.7" > ${BUILD_DIR}/system.properties; 
   fi
 elif [ -f $CACHE_DIR/removeM2Cache ]; then
   KEEP_M2_CACHE="false"
@@ -60,13 +60,13 @@ fi
 cd $CACHE_DIR
 
 # install phantomjs with fonts
-FILE_NAME="buildpack-phantomjs-1.7.0.tar.gz"
+FILE_NAME="buildpack-phantomjs-1.9.2.tar.gz"
 PHANTOMJS_URL="https://s3.amazonaws.com/youcruit/heroku/${FILE_NAME}"
 
-echo "-----> Fetching PhantomJS 1.7.0 buildpack binaries"
+echo "-----> Fetching PhantomJS 1.9.2 buildpack binaries"
 curl --silent --max-time 60 --location $PHANTOMJS_URL -o $CACHE_DIR/$FILE_NAME
 
-echo "-----> Extracting PhantomJS 1.7.0 binaries" 
+echo "-----> Extracting PhantomJS 1.9.2 binaries" 
 mkdir -p $BUILD_DIR/vendor/phantomjs
 tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/phantomjs
 
