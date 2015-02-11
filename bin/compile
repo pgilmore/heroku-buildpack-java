@@ -60,13 +60,13 @@ fi
 cd $CACHE_DIR
 
 # install phantomjs with fonts
-FILE_NAME="buildpack-phantomjs-1.9.2.tar.gz"
+FILE_NAME="buildpack-phantomjs-1.9.8.tar.gz"
 PHANTOMJS_URL="https://s3.amazonaws.com/youcruit/heroku/${FILE_NAME}"
 
-echo "-----> Fetching PhantomJS 1.9.2 buildpack binaries"
+echo "-----> Fetching PhantomJS 1.9.8 buildpack binaries"
 curl --silent --max-time 60 --location $PHANTOMJS_URL -o $CACHE_DIR/$FILE_NAME
 
-echo "-----> Extracting PhantomJS 1.9.2 binaries" 
+echo "-----> Extracting PhantomJS 1.9.8 binaries" 
 mkdir -p $BUILD_DIR/vendor/phantomjs
 tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/phantomjs
 
